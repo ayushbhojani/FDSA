@@ -1,35 +1,45 @@
 #include <iostream>
 using namespace std;
+
 int main()
 {
     int n;
-    cout<<"Enter number of marks:";
-    cin >>n;
-    int marks[n];
-    cout << "Enter the marks:\n";
-    for(int i=0;i<n;i++)
+    cout<<"Enter number of buckets:";
+    cin >> n;
+    cout<<"Entercolour codes:";
+    int a[n];
+
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+
+    int low = 0, mid = 0, high = n - 1;
+
+    while (mid <= high)
     {
-        cin>>marks[i];
-    }
-    for(int i=1;i<n;i++)
-    {
-        int key=marks[i];
-        int j =i-1;
-        while(j>=0&&marks[j]>key)
+        if (a[mid] == 0)
         {
-            marks[j+1]=marks[j];
-            j--;
+            swap(a[low], a[mid]);
+            low++;
+            mid++;
         }
-        marks[j+1]=key;
+        else if (a[mid] == 1)
+        {
+            mid++;
+        }
+        else
+        {
+            swap(a[mid], a[high]);
+            high--;
+        }
     }
-    cout<<"-------------"<<endl;
-    cout<<"The Sorted Array:";
-    cout<<"[";
-    for(int i=0;i<n;i++)
-    {
-        cout<<marks[i]<<",";
-    }
-    cout<<"]"<<endl;
+
+    for (int i = 0; i < n; i++)
+        cout << a[i] << " ";
+
     return 0;
 }
+
+
+
+
 
